@@ -13,17 +13,10 @@ install:
 # command to run tests
 script:
   - cd examples
-  - coverage run -p examples/origin_bit.py
-  - coverage run -p examples/origin.py
-  - coverage run -p examples/多遮挡攻击.py
-  - coverage run -p examples/亮度调暗攻击.py
-  - coverage run -p examples/亮度调高攻击.py
-  - coverage run -p examples/旋转攻击.py
-  - coverage run -p examples/椒盐.py
-  - coverage run -p examples/横向裁剪攻击.py
-  - coverage run -p examples/纵向裁剪攻击.py
-  - coverage run -p examples/缩放攻击.py
+  - coverage run -p origin_bit.py
+  - coverage run -p origin.py
   - cp .coverage.* ..
+  - cd ..
 
 # Push the results back to codecov
 after_success:
