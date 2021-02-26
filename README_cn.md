@@ -10,12 +10,11 @@
 ![Python](https://img.shields.io/badge/python->=3.5-green.svg)
 ![Platform](https://img.shields.io/badge/platform-windows%20|%20linux%20|%20macos-green.svg)
 [![Downloads](https://pepy.tech/badge/blind-watermark)](https://pepy.tech/project/blind-watermark)
-[![Join the chat at https://gitter.im/guofei9987/blind_watermark](https://badges.gitter.im/guofei9987/blind_watermark.svg)](https://gitter.im/guofei9987/blind_watermark?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
 - **Documentation:** [https://BlindWatermark.github.io/blind_watermark/#/en/](https://BlindWatermark.github.io/blind_watermark/#/en/)
 - **文档：** [https://BlindWatermark.github.io/blind_watermark/#/zh/](https://BlindWatermark.github.io/blind_watermark/#/zh/)  
-- **English readme** [readme.md](readme.md)
+- **English readme** [README.md](README.md)
 - **Source code:** [https://github.com/guofei9987/blind_watermark](https://github.com/guofei9987/blind_watermark)
 
 
@@ -80,7 +79,28 @@ bwm1.extract(filename='output/打上水印的图.png', wm_shape=(128, 128), out_
 |亮度提高10%<br>[亮度调高攻击.py](https://github.com/guofei9987/blind_watermark/blob/master/examples/亮度调高攻击.py)|![亮度调高攻击](docs/亮度调高攻击.jpg)|![](docs/亮度调高攻击_提取水印.png)|
 |亮度调低10%<br>[亮度调暗攻击.py](https://github.com/guofei9987/blind_watermark/blob/master/examples/亮度调低攻击.py)|![亮度调低攻击](docs/亮度调低攻击.jpg)|![](docs/亮度调低攻击_提取水印.png)|
 
+### 嵌入字符串
+嵌入：
+```python
+from blind_watermark import WaterMark
 
+bwm1 = WaterMark(password_img=1, password_wm=1)
+bwm1.read_img('pic/ori_img.jpg')
+wm = '@guofei9987 开源万岁！'
+bwm1.read_wm(wm, mode='str')
+bwm1.embed('output/embedded.png')
+len_wm = len(bwm1.wm_bit)
+print('Put down the length of wm_bit {len_wm}'.format(len_wm=len_wm))
+```
+
+提取：
+```python
+bwm1 = WaterMark(password_img=1, password_wm=1)
+wm_extract = bwm1.extract('output/embedded.png', wm_shape=len_wm, mode='str')
+print(wm_extract)
+```
+Output:
+>@guofei9987 开源万岁！
 
 
 ### 隐水印还可以是二进制数据

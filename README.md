@@ -1,3 +1,21 @@
+<table border="0" width="10%">
+  <tr>
+    <td><img src="https://img1.github.io/tmp/1.jpg" height="80" width="82"></td>
+    <td><img src="https://img1.github.io/tmp/2.jpg" height="80" width="82"></td>
+    <td><img src="https://img1.github.io/tmp/3.jpg" height="80" width="82"></td>
+  </tr>
+  <tr>
+    <td><img src="https://img1.github.io/tmp/4.jpg" height="80" width="82"></td>
+    <td><img src="https://img.shields.io/github/stars/guofei9987/blind_watermark.svg?style=social"></td>
+    <td><img src="https://img1.github.io/tmp/6.jpg" height="82" width="82"></td>
+  </tr>
+   <tr>
+    <td><img src="https://img1.github.io/tmp/7.jpg" height="82" width="82"></td>
+    <td><img src="https://img1.github.io/tmp/8.jpg" height="82" width="82"></td>
+    <td><img src="https://img1.github.io/tmp/9.jpg" height="82" width="82"></td>
+  </tr>
+</table>
+
 # blind-watermark
 
 Blind watermark based on wavelet transform.
@@ -10,12 +28,11 @@ Blind watermark based on wavelet transform.
 ![Python](https://img.shields.io/badge/python->=3.5-green.svg)
 ![Platform](https://img.shields.io/badge/platform-windows%20|%20linux%20|%20macos-green.svg)
 [![Downloads](https://pepy.tech/badge/blind-watermark)](https://pepy.tech/project/blind-watermark)
-[![Join the chat at https://gitter.im/guofei9987/blind_watermark](https://badges.gitter.im/guofei9987/blind_watermark.svg)](https://gitter.im/guofei9987/blind_watermark?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
 - **Documentation:** [https://BlindWatermark.github.io/blind_watermark/#/en/](https://BlindWatermark.github.io/blind_watermark/#/en/)
 - **文档：** [https://BlindWatermark.github.io/blind_watermark/#/zh/](https://BlindWatermark.github.io/blind_watermark/#/zh/)  
-- **中文 readme** [readme_cn.md](readme_cn.md)
+- **中文 readme** [README_cn.md](README_cn.md)
 - **Source code:** [https://github.com/guofei9987/blind_watermark](https://github.com/guofei9987/blind_watermark)
 
 
@@ -81,7 +98,28 @@ bwm1.extract(filename='output/embedded.png', wm_shape=(128, 128), out_wm_name='o
 |Brightness 10% Down<br>[亮度调暗攻击.py](https://github.com/guofei9987/blind_watermark/blob/master/examples/亮度调低攻击.py)|![亮度调低攻击](docs/亮度调低攻击.jpg)|![](docs/亮度调低攻击_提取水印.png)|
 
 
+### embed string
+Embed:
+```python
+from blind_watermark import WaterMark
 
+bwm1 = WaterMark(password_img=1, password_wm=1)
+bwm1.read_img('pic/ori_img.jpg')
+wm = '@guofei9987 开源万岁！'
+bwm1.read_wm(wm, mode='str')
+bwm1.embed('output/embedded.png')
+len_wm = len(bwm1.wm_bit)
+print('Put down the length of wm_bit {len_wm}'.format(len_wm=len_wm))
+```
+
+Extract:
+```python
+bwm1 = WaterMark(password_img=1, password_wm=1)
+wm_extract = bwm1.extract('output/embedded.png', wm_shape=len_wm, mode='str')
+print(wm_extract)
+```
+Output:
+>@guofei9987 开源万岁！
 
 ### embed array of bits
 
