@@ -16,6 +16,8 @@
   </tr>
 </table>
 
+
+
 # blind-watermark
 
 Blind watermark based on wavelet transform.
@@ -151,3 +153,11 @@ print(wm_extract)
 Notice that `wm_shape` (shape of watermark) is necessary
 
 The output `wm_extract` is an array of float. set a threshold such as 0.5.
+
+
+# Concurrency
+
+```python
+WaterMark(..., processes=None)
+```
+- `processes`: number of processes, can be integer. Default `None`, meaning use all processes.  
